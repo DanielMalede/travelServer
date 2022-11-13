@@ -18,5 +18,6 @@ router.delete('/delete/:id',deleteFlight)
 router.get('/getFlightByNun/:flightNum',getFlightByNumFlight)
 router.get('/getFirstClassFlights',getAllFlightsFirstClass)
 router.get('/flightsByTimeDeparture/:departureTime',getFlightByTimeDepartureTime)
+router.get('/searchFlightsByLandingAndDeparture',getFlightByTimeDepartureTime)
 
 module.exports = router

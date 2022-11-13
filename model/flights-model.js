@@ -7,7 +7,8 @@ let flights = [
         seatNum:75,
         departureTime:"14:45",
         LandingTime:"15:30",
-        firstClass:true
+        firstClass:true,
+        seatsAvailable: 40
     },
     {
         id:1,
@@ -17,7 +18,8 @@ let flights = [
         seatNum:50,
         departureTime:"20:50",
         LandingTime:"07:20",
-        firstClass:true
+        firstClass:true,
+        seatsAvailable: 30
     },
     {
         id:2,
@@ -27,7 +29,8 @@ let flights = [
         seatNum:24,
         departureTime:"18:45",
         LandingTime:"22:30",
-        firstClass:false
+        firstClass:false,
+        seatsAvailable: 20
     },
     {
         id:3,
@@ -37,7 +40,8 @@ let flights = [
         seatNum:20,
         departureTime:"18:45",
         LandingTime:"17:10",
-        firstClass:true
+        firstClass:true,
+        seatsAvailable: 17
     },
 ]
 
