@@ -13,7 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/travel", travelRouter);
 app.use("/flightCompanys", companysCompanysRouter);
 app.use("/flights", flightsRouter);
-
 app.get("/", (req, res) => {
   res.send("success");
 });
