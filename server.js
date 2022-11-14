@@ -17,7 +17,6 @@ app.use("/flights", flightsRouter);
 app.get("/", (req, res) => {
   res.send("success");
 });
-
 app.listen(port, () => {
   console.log(`server is ${port}`);
 });
