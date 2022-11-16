@@ -10,7 +10,22 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/travel", travelRouter);
+
+const middleWareUrlTravel = (req, res, next) => {
+  const post = req.method 
+  post =="POST"? console.log("post") : console.log('no');
+  next();
+};
+// const middleWare = (req, res, next) => {
+//   const data = req.params;
+//   data !== {} ? console.log("yes") : console.log("no");
+//   next();
+// };
+
+// app.use(middleWare);
+// app.use(middleWareUrl);
+
+app.use("/travel",middleWareUrlTravel, travelRouter);
 app.use("/flightCompanys", companysCompanysRouter);
 app.use("/flights", flightsRouter);
 app.get("/", (req, res) => {
