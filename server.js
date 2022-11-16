@@ -14,6 +14,9 @@ const middleWareUrlAccesses = (req, res, next) => {
   const user = users.find((item) => item.email == req.body.email);
     user ? user.password == req.body.password ? next() : res.send('pas no'): res.send('email not find')
 };
+const register = ()=>{
+  
+}
 
 
 app.use("/travel", middleWareUrlAccesses, travelRouter);
