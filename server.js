@@ -5,30 +5,21 @@ const companysCompanysRouter = require("./routes/flightCompanys-router");
 const flightsRouter = require("./routes/flight-router");
 const app = express();
 const port = 4500;
-
+const users = require("./model/registerUsers-model");
 app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-
-const middleWareUrlTravel = (req, res, next) => {
-  const post = req.method 
-  post =="POST"? console.log("post") : console.log('no');
-  next();
+const middleWareUrlAccesses = (req, res, next) => {
+  const user = users.find((item) => item.email == req.body.email);
+    user ? user.password == req.body.password ? next() : res.send('pas no'): res.send('email not find')
 };
-// const middleWare = (req, res, next) => {
-//   const data = req.params;
-//   data !== {} ? console.log("yes") : console.log("no");
-//   next();
-// };
 
-// app.use(middleWare);
-// app.use(middleWareUrl);
 
-app.use("/travel",middleWareUrlTravel, travelRouter);
+app.use("/travel", middleWareUrlAccesses, travelRouter);
 app.use("/flightCompanys", companysCompanysRouter);
 app.use("/flights", flightsRouter);
-app.get("/", (req, res) => {
+app.post("/",middleWareUrlAccesses, (req, res) => {
   res.send("success");
 });
 app.listen(port, () => {
