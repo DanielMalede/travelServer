@@ -18,7 +18,7 @@ const middleWareUrlAccesses = (req, res, next) => {
 app.use("/travel", middleWareUrlAccesses, travelRouter);
 app.use("/flightCompanys", companysCompanysRouter);
 app.use("/flights", flightsRouter);
-app.get("/users",usersAccess)
+app.use("/signIn",usersAccess)
 app.get("/",middleWareUrlAccesses, (req, res) => {
   res.send("success");
 });

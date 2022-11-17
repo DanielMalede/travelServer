@@ -1,13 +1,14 @@
 const users = require('../model/registerUsers-model')
-const validationEmail = require('../validation/validateEmail')
+const {signUpValidator }= require('../validation/validateEmail')
+
 const signUp = (req,res)=>{
-    if (validationEmail(users)) {
-        return res.send('not ok')
+    if (!signUpValidator(req.body.users.email)) {
+        return res.status(400).json('err')
     }
-    res.send("all good keep")
+    users.push(req.body.users)
 }
 const signIn = (req,res)=>{
-    if (isIn){
+    if (validationEmail(req.body.users.email)){
         return res.send('your in')
     }
     return res.send('you not in')
