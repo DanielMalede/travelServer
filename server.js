@@ -6,6 +6,8 @@ const flightsRouter = require("./routes/flight-router");
 const usersAccess = require("./routes/user-router");
 const app = express();
 const port = 4500;
+const dotenv = require("dotenv")
+dotenv.config()
 const users = require("./model/registerUsers-model");
 app.use(cors());
 app.use(express.json({ extended: true }));
