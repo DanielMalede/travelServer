@@ -29,4 +29,4 @@ let registerUsers = [
   },
 ];
 
-module.exports =registerUsers
+module.exports = registerUsers;
