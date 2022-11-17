@@ -1,1 +1,1 @@
-const DBConnection = process.env.MY_DB_KEY
+const DBConnection = process.env.MY_DB_KEY;
