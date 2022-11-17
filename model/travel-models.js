@@ -19,4 +19,4 @@ let travelStates = [
   },
 ];
 
-module.exports = travelStates
+module.exports = travelStates;
