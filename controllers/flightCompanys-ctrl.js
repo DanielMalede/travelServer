@@ -5,7 +5,7 @@ const getIndex=(req)=>{
     return flightIndex
 }
 
-const getFlightcompanys = (req,res)=>{
+const getFlightcompanys = (req,res,next)=>{
     res.send(flightcompanys)
 }
 const createFlightcompanys = (req,res)=>{
