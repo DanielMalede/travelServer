@@ -8,7 +8,8 @@ const signUp = (req, res) => {
   users.push(req.body.users);
 };
 const signIn = (req, res) => {
-  if (validationEmail(req.body.users.email)) {
+  if (signUpValidator(req.body.users.email)) {
+
     return res.send("your in");
   }
   return res.send("you not in");

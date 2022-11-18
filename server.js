@@ -21,7 +21,7 @@ const middleWareUrlAccesses = (req, res, next) => {
       : res.send("pas no")
     : res.send("email not find");
 };
-app.use("/travel", middleWareUrlAccesses, travelRouter);
+app.use("/travel", travelRouter);
 app.use("/flightCompanys", companysCompanysRouter);
 app.use("/flights", flightsRouter);
 app.use("/signIn", usersAccess);
