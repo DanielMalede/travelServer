@@ -11,11 +11,9 @@ const users = require("./model/registerUsers-model");
 const dotenv = require("dotenv");
 dotenv.config();
 
-
 app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
-
 
 const middleWareUrlAccesses = (req, res, next) => {
   const user = users.find((item) => item.email == req.body.users.email);
@@ -34,11 +32,14 @@ const middleWareFlightCompanyAccesses = (req, res, next) => {
     : res.send("email not find");
 };
 
-app.use("/flightCompanys",middleWareFlightCompanyAccesses, companysCompanysRouter);
+app.use(
+  "/flightCompanys",
+  middleWareFlightCompanyAccesses,
+  companysCompanysRouter
+);
 app.use("/travel", travelRouter);
 app.use("/flights", flightsRouter);
 app.use("/users", usersAccess);
-
 
 app.get("/", middleWareUrlAccesses, (req, res) => {
   res.send("success");
