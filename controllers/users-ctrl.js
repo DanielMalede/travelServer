@@ -29,7 +29,11 @@ const signIn = (req, res) => {
   userLogIn
     ? userLogIn.password == req.body.user.password
       ? (res.send(
-          "email: " + req.body.user.email +"  "+ "password: " + req.body.user.password
+          "email: " +
+            req.body.user.email +
+            "  " +
+            "password: " +
+            req.body.user.password
         ),
         next())
       : res.send("password wrong")
