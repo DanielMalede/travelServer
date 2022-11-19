@@ -9,7 +9,6 @@ const signUp = (req, res) => {
 };
 const signIn = (req, res) => {
   if (signUpValidator(req.body.users.email)) {
-
     return res.send("your in");
   }
   return res.send("you not in");
