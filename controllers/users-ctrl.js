@@ -16,12 +16,24 @@ const signUp = (req, res) => {
     ) &&
     checkUserAge(req.body.users.age)
   ) {
-    return res.send("user has created"), users.push(req.body.users);
+    req.body.users.id = Math.floor(Math.random() * 10000);
+    req.body.users.token = Math.floor(Math.random() * 10000);
+    users.push(req.body.users);
+    return res.send("user has created");
   }
   return res.send("error");
+};
+
+const signIn = (req,res) => {
+  const userLogIn = users.find((item) => item.email == req.body.user.email);
+  userLogIn ? userLogIn.password == req.body.user.password
+      ? (res.send("welcome"), next())
+      : res.send("password wrong")
+    : res.send("email not find");
 };
 
 module.exports = {
   signUp,
   getUsers,
+  signIn,
 };
