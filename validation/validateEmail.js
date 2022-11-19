@@ -1,11 +1,10 @@
-const ok = false;
-const signUpValidator = (email) => {
+const emailValidator = (res, email) => {
   const temp = email.indexOf("@");
   const last = email.slice(email.length - 4);
   if (temp > 0 && last == ".com") {
     return true;
-  } else {
-    return false;
   }
+  // res.send("email has to be with @ and .com");
+  return false;
 };
-module.exports = { signUpValidator, ok };
+module.exports = { emailValidator };

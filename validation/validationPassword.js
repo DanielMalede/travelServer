@@ -1,7 +1,10 @@
-const validationPassword = (users) => {
-  if (password.password == req.body.user.confirmPassword) {
+const validator = require("validator");
+const validationPassword = (res, password, valPassword) => {
+  if (password == valPassword) {
     return true;
-  } else {
-    return false;
   }
+  // res.send("password are not the same");
+  return false;
 };
+
+module.exports = { validationPassword };
