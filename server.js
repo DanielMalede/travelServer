@@ -25,10 +25,17 @@ const middleWareUrlAccesses = (req, res, next) => {
       : res.send("pas no")
     : res.send("email not find");
 };
+const middleWareFlightCompanyAccesses = (req, res, next) => {
+  const user = users.find((item) => item.email == req.body.user.email);
+  user
+    ? req.body.user.token
+      ? (res.send("welcome"), next())
+      : res.send("token not found")
+    : res.send("email not find");
+};
 
-
+app.use("/flightCompanys",middleWareFlightCompanyAccesses, companysCompanysRouter);
 app.use("/travel", travelRouter);
-app.use("/flightCompanys", companysCompanysRouter);
 app.use("/flights", flightsRouter);
 app.use("/users", usersAccess);
 

@@ -24,10 +24,14 @@ const signUp = (req, res) => {
   return res.send("error");
 };
 
-const signIn = (req,res) => {
+const signIn = (req, res) => {
   const userLogIn = users.find((item) => item.email == req.body.user.email);
-  userLogIn ? userLogIn.password == req.body.user.password
-      ? (res.send("welcome"), next())
+  userLogIn
+    ? userLogIn.password == req.body.user.password
+      ? (res.send(
+          "email: " + req.body.user.email +"  "+ "password: " + req.body.user.password
+        ),
+        next())
       : res.send("password wrong")
     : res.send("email not find");
 };
