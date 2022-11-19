@@ -1,8 +1,8 @@
-const checkUserAge = (age)=>{
-    if(age>18){
-        return true
-    }
-    return false
-}
+const checkUserAge = (age) => {
+  if (age > 18) {
+    return true;
+  }
+  return false;
+};
 
-module.exports = checkUserAge
+module.exports = checkUserAge;
