@@ -32,8 +32,7 @@ const middleWareFlightCompanyAccesses = (req, res, next) => {
     : res.send("email not find");
 };
 
-app.use(
-  "/flightCompanys",
+app.use("/flightCompanys",
   middleWareFlightCompanyAccesses,
   companysCompanysRouter
 );
