@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 const middleWareUrlAccesses = (req, res, next) => {
   const user = users.find((item) => item.email == req.body.users.email);
   user
-    ? user.password == req.body.password
-      ? next()
+    ? user.password == req.body.users.password
+      ? (res.send("welcome"),next())
       : res.send("pas no")
     : res.send("email not find");
 };
