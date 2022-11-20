@@ -1,10 +1,22 @@
-const travelStates = require("../model/travel-models");
+const countryModel = require("../model/country-models");
 const getIndex = (req) => {
   const countryId = travelStates.find((item) => item.id == req.params.id);
   const countryIndex = travelStates.indexOf(countryId);
   return countryIndex;
 };
-
+const get = async(req,res)=>{
+  await countryModel.find((err,result)=>{
+    if (err) {
+      return res.status(400).json({success:false,message:err})
+    }
+    if (result.length==0) {
+      return res.status(400).json({success:false,message:err})
+    }
+    if (result) {
+      return res.status(300).json({success:true,message:result})
+    }
+  })
+}
 const getTravel = (req, res) => {
   travelStates ? res.send(travelStates) : res.send("no countries");
 };
