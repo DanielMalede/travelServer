@@ -1,6 +1,8 @@
 const { default: mongoose } = require("mongoose");
 
-const Flights = mongoose.Schema({
+const Schema = mongoose.Schema
+
+const Flights = new Schema({
   id:Number,
   flightNum:Number,
   departureFlight:String,
