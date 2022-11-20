@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const port = 4500;
 const cors = require("cors");
+const core = require('./DB/index')
 
 const travelRouter = require("./routes/travel-router");
 const companysCompanysRouter = require("./routes/flightCompanys-router");

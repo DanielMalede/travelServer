@@ -1,4 +1,4 @@
-const travelStates = require("../model/travel-models");
+const countryModel = require("../model/country-models");
 const getIndex = (req) => {
   const countryId = travelStates.find((item) => item.id == req.params.id);
   const countryIndex = travelStates.indexOf(countryId);
