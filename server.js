@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const app = express();
 const port = 4500;
@@ -8,8 +10,6 @@ const companysCompanysRouter = require("./routes/flightCompanys-router");
 const flightsRouter = require("./routes/flight-router");
 const usersAccess = require("./routes/user-router");
 const users = require("./model/registerUsers-model");
-const dotenv = require("dotenv");
-dotenv.config();
 
 app.use(cors());
 app.use(express.json({ extended: true }));
