@@ -4,22 +4,25 @@ const getIndex = (req) => {
   const countryIndex = travelStates.indexOf(countryId);
   return countryIndex;
 };
-const get = async (req, res) => {
-  await countryModel.find((err, result) => {
+
+const getTravel = async (req, res) => {
+  await countryModel.find().then((result,err) => {
     if (err) {
       return res.status(400).json({ success: false, message: err });
     }
     if (result.length == 0) {
-      return res.status(400).json({ success: false, message: err });
+      return res.json({ success: false, message: 'no data' });
     }
     if (result) {
-      return res.status(300).json({ success: true, message: result });
+      return res.status(200).json({ success: true, message: result });
     }
   });
 };
-const getTravel = (req, res) => {
-  travelStates ? res.send(travelStates) : res.send("no countries");
-};
+
+
+// const getTravel = (req, res) => {
+//   travelStates ? res.send(travelStates) : res.send("no countries");
+// };
 const createTravelById = (req, res) => {
   const data = req.body.data;
   travelStates.push(data);
