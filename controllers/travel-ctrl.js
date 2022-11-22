@@ -35,20 +35,13 @@ const createTravelById = async (req,res)=>{
   .catch(error => res.status(400).json({success:false,error}))
 }
 
-const deleteTravel = (req, res) => {
-  const getCountryIndex = getIndex(req);
-  const deleteCountry = travelStates.splice(getCountryIndex, 1);
-  deleteCountry
-    ? res.send(travelStates)
-    : res.send("not country found to delete");
+const deleteTravel =async (req, res) => {
+  await countryModel.findByIdAndDelete()
 };
-const updateTravel = (req, res) => {
-  const getCountryIndex = getIndex(req);
-  if (getCountryIndex > -1) {
-    travelStates[getCountryIndex] = req.body.data;
-    return res.send("successfully Update");
-  }
-  res.send("error ");
+const updateTravel = async(req, res) => {
+  await countryModel.findByIdAndUpdate(req.params.id,req.body.data)
+  .then((result)=>res.status(200).json({success:true,result}))
+  .catch(err=> res.status(400).json({success:false,message:err}))
 };
 
 module.exports = {
