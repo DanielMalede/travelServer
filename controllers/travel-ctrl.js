@@ -6,7 +6,7 @@ const getIndex = (req) => {
 };
 
 const getTravel = async (req, res) => {
-  await countryModel.find().then((result,err) => {
+  await countryModel.find({}).then((result,err) => {
     if (err) {
       return res.status(400).json({ success: false, message: err });
     }
@@ -19,21 +19,22 @@ const getTravel = async (req, res) => {
   });
 };
 
+const getTravelById = async (req,res)=>{
+  await countryModel.findById(req.params.id).then(countryId => {
+    if (!countryId) {
+      return res.json({success:false,message:'country not found'})
+    }
+    return res.status(200).json({success:true,countryId})
+  })
+   .catch(error => res.status(400).json({success:false, error}))
+}
 
-// const getTravel = (req, res) => {
-//   travelStates ? res.send(travelStates) : res.send("no countries");
-// };
-const createTravelById = (req, res) => {
-  const data = req.body.data;
-  travelStates.push(data);
-  data ? res.send("country has been add") : res.send("country not add");
-};
-const getTravelById = (req, res) => {
-  const country = travelStates.find((item) => item.id == req.params.id);
-  country
-    ? res.send(country)
-    : res.send("no country Found Try different country");
-};
+const createTravelById = async (req,res)=>{
+  await countryModel.insertMany(req.body.data)
+  .then(()=> res.status(200).json({success:true,message:'country added'}))
+  .catch(error => res.status(400).json({success:false,error}))
+}
+
 const deleteTravel = (req, res) => {
   const getCountryIndex = getIndex(req);
   const deleteCountry = travelStates.splice(getCountryIndex, 1);
