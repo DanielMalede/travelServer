@@ -36,7 +36,9 @@ const createTravelById = async (req,res)=>{
 }
 
 const deleteTravel =async (req, res) => {
-  await countryModel.findByIdAndDelete()
+  await countryModel.findByIdAndDelete(req.params.id)
+  .then(()=> res.status(300).json({success:true}))
+  .catch(err => res.status(400).json({success:false,err}))
 };
 const updateTravel = async(req, res) => {
   await countryModel.findByIdAndUpdate(req.params.id,req.body.data)
