@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const port = 4500;
 const cors = require("cors");
-const db = require('./DB')
+const db = require("./DB");
 
 const travelRouter = require("./routes/travel-router");
 const companysCompanysRouter = require("./routes/flightCompanys-router");
@@ -33,7 +33,11 @@ const middleWareFlightCompanyAccesses = (req, res, next) => {
     : res.send("email not find");
 };
 
-app.use("/flightCompanys",middleWareFlightCompanyAccesses,companysCompanysRouter);
+app.use(
+  "/flightCompanys",
+  middleWareFlightCompanyAccesses,
+  companysCompanysRouter
+);
 app.use("/travel", travelRouter);
 app.use("/flights", flightsRouter);
 app.use("/users", usersAccess);
