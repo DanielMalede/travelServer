@@ -68,9 +68,7 @@ const getFlightByDepartureAndLanding = (req, res) => {
   const flightsAvailable = flights.filter((flights) =>
     console.log(req.body.departure)
   );
-  flightsAvailable
-    ? res.send(flightsAvailable)
-    : res.send("no flights at this time");
+  flightsAvailable? res.send(flightsAvailable): res.send("no flights at this time");
 };
 
 module.exports = {
