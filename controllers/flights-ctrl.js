@@ -49,11 +49,7 @@ const getAllFlightsFirstClass = (req, res) => {
   const flightsFirstClass = flights.filter(
     (flights) => flights.firstClass == true
   );
-  flightsFirstClass
-    ? res.send({
-        massage: "first class has found",
-        flightsFirstClass: flightsFirstClass,
-      })
+  flightsFirstClass? res.send({massage: "first class has found",flightsFirstClass: flightsFirstClass,})
     : res.send("no first class flights found");
 };
 
