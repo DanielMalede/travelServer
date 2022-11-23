@@ -33,9 +33,7 @@ const updateFlights = (req, res) => {
 const deleteFlight = (req, res) => {
   const flightIndex = getIndex(req);
   const deleteFlight = flights.splice(flightIndex, 1);
-  deleteFlight
-    ? res.send("flight Deleted")
-    : res.send("err flight not found and not deleted");
+  deleteFlight? res.send("flight Deleted"): res.send("err flight not found and not deleted");
 };
 
 const getFlightByNumFlight = (req, res) => {
