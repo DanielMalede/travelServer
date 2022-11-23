@@ -42,9 +42,9 @@ const createTravelById = async (req, res) => {
 
 const updateTravel = async (req, res) => {
   await countryModel
-  .findByIdAndUpdate(req.params.id, req.body.data)
-  .then((result) => res.status(200).json({ success: true, result }))
-  .catch((err) => res.status(400).json({ success: false, message: err }));
+    .findByIdAndUpdate(req.params.id, req.body.data)
+    .then((result) => res.status(200).json({ success: true, result }))
+    .catch((err) => res.status(400).json({ success: false, message: err }));
 };
 const deleteTravel = async (req, res) => {
   await countryModel
