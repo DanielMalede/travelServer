@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
 const FlightCompany = new Schema({
-  id:Number,
-  name:String,
+  id:{type:Number},
+  name:{type:String},
   airplane:Number,
   numAirPlaneAvailable:Number
 })
