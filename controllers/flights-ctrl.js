@@ -33,7 +33,9 @@ const updateFlights = (req, res) => {
 const deleteFlight = (req, res) => {
   const flightIndex = getIndex(req);
   const deleteFlight = flights.splice(flightIndex, 1);
-  deleteFlight? res.send("flight Deleted"): res.send("err flight not found and not deleted");
+  deleteFlight
+    ? res.send("flight Deleted")
+    : res.send("err flight not found and not deleted");
 };
 
 const getFlightByNumFlight = (req, res) => {
@@ -47,7 +49,11 @@ const getAllFlightsFirstClass = (req, res) => {
   const flightsFirstClass = flights.filter(
     (flights) => flights.firstClass == true
   );
-  flightsFirstClass? res.send({massage: "first class has found",flightsFirstClass: flightsFirstClass,})
+  flightsFirstClass
+    ? res.send({
+        massage: "first class has found",
+        flightsFirstClass: flightsFirstClass,
+      })
     : res.send("no first class flights found");
 };
 
@@ -62,7 +68,9 @@ const getFlightByDepartureAndLanding = (req, res) => {
   const flightsAvailable = flights.filter((flights) =>
     console.log(req.body.departure)
   );
-  flightsAvailable? res.send(flightsAvailable): res.send("no flights at this time");
+  flightsAvailable
+    ? res.send(flightsAvailable)
+    : res.send("no flights at this time");
 };
 
 module.exports = {
