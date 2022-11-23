@@ -40,17 +40,17 @@ const createTravelById = async (req, res) => {
     .catch((error) => res.status(400).json({ success: false, error }));
 };
 
-const deleteTravel = async (req, res) => {
-  await countryModel
-    .findByIdAndDelete(req.params.id)
-    .then(() => res.status(300).json({ success: true }))
-    .catch((err) => res.status(400).json({ success: false, err }));
-};
 const updateTravel = async (req, res) => {
   await countryModel
     .findByIdAndUpdate(req.params.id, req.body.data)
     .then((result) => res.status(200).json({ success: true, result }))
     .catch((err) => res.status(400).json({ success: false, message: err }));
+};
+const deleteTravel = async (req, res) => {
+  await countryModel
+    .findByIdAndDelete(req.params.id)
+    .then(() => res.status(300).json({ success: true }))
+    .catch((err) => res.status(400).json({ success: false, err }));
 };
 
 module.exports = {
