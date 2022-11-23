@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const Country  = new Schema({
   id:{type:Number ,required:true},
   name:{type:String,required:true},
-  city:Array,
-  capital:String
+  city:{type:Array},
+  capital:{type:String}
 })
 module.exports = mongoose.model('Country',Country);
