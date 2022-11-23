@@ -5,8 +5,8 @@ const Schema = mongoose.Schema
 const Users = new Schema({
   id:Number,
   F_name:{type:String,required:true},
-  L_name:String,
-  email:String,
+  L_name:{type:String,required:true},
+  email:{type:String,required:true},
   password:String
 })
 
