@@ -7,7 +7,7 @@ const Users = new Schema({
   F_name:{type:String,required:true},
   L_name:{type:String,required:true},
   email:{type:String,required:true},
-  password:String
+  password:{type:String,required:true}
 })
 
 module.exports = mongoose.model('users',Users);
