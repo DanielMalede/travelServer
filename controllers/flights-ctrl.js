@@ -23,11 +23,11 @@ const getFlights = async (req, res) => {
 const getFlightById =async (req, res) => {
   await flights
     .findById(req.params.id)
-    .then((countryId) => {
-      if (!countryId) {
+    .then((flights) => {
+      if (!flights) {
         return res.json({ success: false, message: "country not found" });
       }
-      return res.status(200).json({ success: true, countryId });
+      return res.status(200).json({ success: true, flights });
     })
     .catch((error) => res.status(400).json({ success: false, error }));
 };
