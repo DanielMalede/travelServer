@@ -32,10 +32,13 @@ const getFlightById =async (req, res) => {
     .catch((error) => res.status(400).json({ success: false, error }));
 };
 
-const createFlight = (req, res) => {
-  const data = req.body.data;
-  flights.push(data);
-  data ? res.send("flight has added") : res.send("err flight not added");
+const createFlight =async (req, res) => {
+  await flights
+    .insertMany(req.body.data)
+    .then(() =>
+      res.status(200).json({ success: true, message: "country added" })
+    )
+    .catch((error) => res.status(400).json({ success: false, error }));
 };
 
 const updateFlights = (req, res) => {
