@@ -48,7 +48,7 @@ const updateFlights = async (req, res) => {
     .catch((err) => res.status(400).json({ success: false, message: err }));
 };
 
-const deleteFlight =async (req, res) => {
+const deleteFlight = async (req, res) => {
   await flights
     .findByIdAndDelete(req.params.id)
     .then(() => res.status(300).json({ success: true }))
