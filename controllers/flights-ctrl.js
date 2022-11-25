@@ -20,9 +20,16 @@ const getFlights = async (req, res) => {
   });
 };
 
-const getFlightById = (req, res) => {
-  const flightId = flights.find((flight) => flight.id == req.params.id);
-  flightId ? res.send(flightId) : res.send("flight not found");
+const getFlightById =async (req, res) => {
+  await flights
+    .findById(req.params.id)
+    .then((countryId) => {
+      if (!countryId) {
+        return res.json({ success: false, message: "country not found" });
+      }
+      return res.status(200).json({ success: true, countryId });
+    })
+    .catch((error) => res.status(400).json({ success: false, error }));
 };
 
 const createFlight = (req, res) => {
