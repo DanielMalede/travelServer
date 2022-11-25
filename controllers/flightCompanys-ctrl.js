@@ -1,9 +1,4 @@
 const flightcompanys = require("../model/flightCompanys");
-const getIndex = (req) => {
-  const flightId = flightcompanys.find((flight) => flight.id == req.params.id);
-  const flightIndex = flightcompanys.indexOf(flightId);
-  return flightIndex;
-};
 
 const getFlightcompanys = (req, res, next) => {
   res.send(flightcompanys);

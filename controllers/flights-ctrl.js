@@ -1,11 +1,5 @@
 const flights = require("../model/flights-model");
 
-const getIndex = (req, res) => {
-  const flightId = flights.find((flight) => flight.id == req.params.id);
-  const flightIndex = flights.indexOf(flightId);
-  return flightIndex;
-};
-
 const getFlights = async (req, res) => {
   await flights.find({}).then((result, err) => {
     if (err) {
@@ -48,7 +42,7 @@ const updateFlights = async (req, res) => {
     .catch((err) => res.status(400).json({ success: false, message: err }));
 };
 
-const deleteFlight =async (req, res) => {
+const deleteFlight = async (req, res) => {
   await flights
     .findByIdAndDelete(req.params.id)
     .then(() => res.status(300).json({ success: true }))
