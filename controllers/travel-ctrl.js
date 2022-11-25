@@ -1,9 +1,4 @@
 const countryModel = require("../model/country-models");
-const getIndex = (req) => {
-  const countryId = travelStates.find((item) => item.id == req.params.id);
-  const countryIndex = travelStates.indexOf(countryId);
-  return countryIndex;
-};
 
 const getTravel = async (req, res) => {
   await countryModel.find({}).then((result, err) => {
@@ -59,5 +54,4 @@ module.exports = {
   getTravelById,
   deleteTravel,
   updateTravel,
-  getIndex,
 };
