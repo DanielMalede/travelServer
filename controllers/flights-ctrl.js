@@ -6,8 +6,18 @@ const getIndex = (req, res) => {
   return flightIndex;
 };
 
-const getFlights = (req, res) => {
-  flights ? res.send(flights) : res.send("no flights to show");
+const getFlights = async (req, res) => {
+  await flights.find({}).then((result, err) => {
+    if (err) {
+      return res.status(400).json({ success: false, message: err });
+    }
+    if (result.length == 0) {
+      return res.json({ success: false, message: "no data" });
+    }
+    if (result) {
+      return res.status(200).json({ success: true, message: result });
+    }
+  });
 };
 
 const getFlightById = (req, res) => {
