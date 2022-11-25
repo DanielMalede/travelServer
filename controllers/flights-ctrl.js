@@ -6,36 +6,53 @@ const getIndex = (req, res) => {
   return flightIndex;
 };
 
-const getFlights = (req, res) => {
-  flights ? res.send(flights) : res.send("no flights to show");
+const getFlights = async (req, res) => {
+  await flights.find({}).then((result, err) => {
+    if (err) {
+      return res.status(400).json({ success: false, message: err });
+    }
+    if (result.length == 0) {
+      return res.json({ success: false, message: "no data" });
+    }
+    if (result) {
+      return res.status(200).json({ success: true, message: result });
+    }
+  });
 };
 
-const getFlightById = (req, res) => {
-  const flightId = flights.find((flight) => flight.id == req.params.id);
-  flightId ? res.send(flightId) : res.send("flight not found");
+const getFlightById = async (req, res) => {
+  await flights
+    .findById(req.params.id)
+    .then((flights) => {
+      if (!flights) {
+        return res.json({ success: false, message: "country not found" });
+      }
+      return res.status(200).json({ success: true, flights });
+    })
+    .catch((error) => res.status(400).json({ success: false, error }));
 };
 
-const createFlight = (req, res) => {
-  const data = req.body.data;
-  flights.push(data);
-  data ? res.send("flight has added") : res.send("err flight not added");
+const createFlight = async (req, res) => {
+  await flights
+    .insertMany(req.body.data)
+    .then(() =>
+      res.status(200).json({ success: true, message: "country added" })
+    )
+    .catch((error) => res.status(400).json({ success: false, error }));
 };
 
-const updateFlights = (req, res) => {
-  const flightIndex = getIndex(req);
-  if (flightIndex > -1) {
-    flights[flightIndex] = req.body.data;
-    return res.send("flight update");
-  }
-  res.send("err flight has not update");
+const updateFlights = async (req, res) => {
+  await flights
+    .findByIdAndUpdate(req.params.id, req.body.data)
+    .then((result) => res.status(200).json({ success: true, result }))
+    .catch((err) => res.status(400).json({ success: false, message: err }));
 };
 
-const deleteFlight = (req, res) => {
-  const flightIndex = getIndex(req);
-  const deleteFlight = flights.splice(flightIndex, 1);
-  deleteFlight
-    ? res.send("flight Deleted")
-    : res.send("err flight not found and not deleted");
+const deleteFlight =async (req, res) => {
+  await flights
+    .findByIdAndDelete(req.params.id)
+    .then(() => res.status(300).json({ success: true }))
+    .catch((err) => res.status(400).json({ success: false, err }));
 };
 
 const getFlightByNumFlight = (req, res) => {
