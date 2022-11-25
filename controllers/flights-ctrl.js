@@ -1,11 +1,5 @@
 const flights = require("../model/flights-model");
 
-const getIndex = (req, res) => {
-  const flightId = flights.find((flight) => flight.id == req.params.id);
-  const flightIndex = flights.indexOf(flightId);
-  return flightIndex;
-};
-
 const getFlights = async (req, res) => {
   await flights.find({}).then((result, err) => {
     if (err) {
