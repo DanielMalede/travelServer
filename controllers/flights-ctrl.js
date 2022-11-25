@@ -20,7 +20,7 @@ const getFlights = async (req, res) => {
   });
 };
 
-const getFlightById =async (req, res) => {
+const getFlightById = async (req, res) => {
   await flights
     .findById(req.params.id)
     .then((flights) => {
@@ -32,7 +32,7 @@ const getFlightById =async (req, res) => {
     .catch((error) => res.status(400).json({ success: false, error }));
 };
 
-const createFlight =async (req, res) => {
+const createFlight = async (req, res) => {
   await flights
     .insertMany(req.body.data)
     .then(() =>
@@ -41,21 +41,18 @@ const createFlight =async (req, res) => {
     .catch((error) => res.status(400).json({ success: false, error }));
 };
 
-const updateFlights = (req, res) => {
-  const flightIndex = getIndex(req);
-  if (flightIndex > -1) {
-    flights[flightIndex] = req.body.data;
-    return res.send("flight update");
-  }
-  res.send("err flight has not update");
+const updateFlights = async (req, res) => {
+  await flights
+    .findByIdAndUpdate(req.params.id, req.body.data)
+    .then((result) => res.status(200).json({ success: true, result }))
+    .catch((err) => res.status(400).json({ success: false, message: err }));
 };
 
-const deleteFlight = (req, res) => {
-  const flightIndex = getIndex(req);
-  const deleteFlight = flights.splice(flightIndex, 1);
-  deleteFlight
-    ? res.send("flight Deleted")
-    : res.send("err flight not found and not deleted");
+const deleteFlight =async (req, res) => {
+  await flights
+    .findByIdAndDelete(req.params.id)
+    .then(() => res.status(300).json({ success: true }))
+    .catch((err) => res.status(400).json({ success: false, err }));
 };
 
 const getFlightByNumFlight = (req, res) => {
